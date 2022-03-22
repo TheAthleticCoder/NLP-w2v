@@ -54,35 +54,40 @@ print(word_vectors.most_similar("camera"))
 
 model.save("word2vec.model")
 
-# def tsne_plot(model):
-#     "Creates and TSNE model and plots it"
-#     labels = []
-#     tokens = []
+# print(word_vectors.get_vector("camera"))
 
-#     new_values = tsne_model.fit_transform(model.wv.get_vector_representation())
+def tsne_plot(model, word):
+    tsne_model = TSNE(perplexity=40, n_components=2, init='pca', n_iter=2500, random_state=23)
+    arr = np.empty((0,100), dtype='f')
+    word_labels = [word]
+    #get close words
+    close_words = model.wv.most_similar(word)
+    #add the vector for each of the closest words to the array
+    arr = np.append(arr, np.array([model.wv.get_vector(word)]), axis=0)
+    for wrd_score in close_words:
+        wrd_vector = model.wv.get_vector(wrd_score[0])
+        word_labels.append(wrd_score[0])
+        arr = np.append(arr, np.array([wrd_vector]), axis=0)
+    #run t-sne on array of vectors
+    Y = tsne_model.fit_transform(arr)
+    x_coords = Y[:, 0]
+    y_coords = Y[:, 1]
+    #display scatter plot
+    plt.scatter(x_coords, y_coords)
+    for label, x, y in zip(word_labels, x_coords, y_coords):
+        plt.annotate(label, xy=(x, y), xytext=(0, 0), textcoords='offset points')
+    # plt.xlim(x_coords.min()+0.005, x_coords.max()+0.005)
+    # plt.ylim(y_coords.min()+0.005, y_coords.max()+0.005)
+    return plt
 
-#     for word in list(model.wv.index_to_key):
-#         tokens.append(model.wv.get_index(word))
-#         labels.append(word)
-    
-#     tsne_model = TSNE(perplexity=40, n_components=2, init='pca', n_iter=2500, random_state=23)
-#     new_values = tsne_model.fit_transform(tokens)
+words = ['camera','the','an']
 
-#     x = []
-#     y = []
-#     for value in new_values:
-#         x.append(value[0])
-#         y.append(value[1])
-        
-#     plt.figure(figsize=(16, 16)) 
-#     for i in range(len(x)):
-#         plt.scatter(x[i],y[i])
-#         plt.annotate(labels[i],
-#                      xy=(x[i], y[i]),
-#                      xytext=(5, 2),
-#                      textcoords='offset points',
-#                      ha='right',
-#                      va='bottom')
-#     plt.show()
+#plot for all words in a single plot
+plt.figure(figsize=(16, 16))
+for i,word in enumerate(words):
+    # ax = plt.subplot(1, len(words), i+1)
+    ax = plt.subplot(2,2, i+1)
+    tsne_plot(model, word)
+    plt.title(word)
+plt.show()
 
-# tsne_plot(model)
