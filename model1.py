@@ -26,9 +26,6 @@ def top_similar(word, model_dict, n=10):
 topit = top_similar('camera', model_dict)
 print(topit)
 
-# topit = top_similar('camera', model_dict)
-# print(topit)
-
 #cosine similarity to find closest words
 def cosine_similarity(vec1, vec2):
     return np.dot(vec1, vec2) / (np.linalg.norm(vec1) * np.linalg.norm(vec2))
@@ -42,11 +39,6 @@ def get_similar_words(words, model_dict, n=10):
             total_word_list.append(w[0])
     total_word_vectors = np.array([model_dict[w] for w in total_word_list])
     return total_word_list, total_word_vectors
-
-# words, word_vectors = get_similar_words(words, model_dict, n=10)
-# print("words:", words)
-# print(word_vectors)
-
 
 def tsne_plot(word, model_dict, n):
     tsne_model = TSNE(perplexity=40, n_components=2, init='pca', n_iter=2500, random_state=23)
@@ -70,12 +62,12 @@ def tsne_plot(word, model_dict, n):
     # plt.ylim(y_coords.min()+0.005, y_coords.max()+0.005)
     return plt
 
-words = ['camera','an']
+words = ['comfortable','device','crisp','best','work']
 
-plt.figure(figsize=(16, 16))
+plt.figure(figsize=(24, 24))
 for i,word in enumerate(words):
     # ax = plt.subplot(1, len(words), i+1)
-    ax = plt.subplot(2,2, i+1)
+    ax = plt.subplot(3,2, i+1)
     tsne_plot(word, model_dict, n=10)
     plt.title(word)
 plt.show()

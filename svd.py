@@ -40,15 +40,6 @@ total_sentences = temp
         
 #create vocabulary list    
 vocab=list(set((" ".join(total_sentences)).split()))
-# print(len(vocab))
-# print(len(word_counts))
-
-#find different words in the vocabulary
-# diff_words = []
-# for word in vocab:
-#     if word not in word_counts:
-#         diff_words.append(word)
-
 
 #2d sentences with words
 words_in_sentence = []
@@ -75,9 +66,6 @@ for i in total_sentences:
                 #append the reverse as well
                 w.append([i[l],i[k]])
 
-# w1=[x[::-1] for x in w]
-# w.extend(w1)
-# print(len(w))
 
 #create cooccurence matrix
 a = np.zeros((len(vocab),len(vocab)))
