@@ -62,7 +62,7 @@ def tsne_plot(word, model_dict, n):
     # plt.ylim(y_coords.min()+0.005, y_coords.max()+0.005)
     return plt
 
-words = ['comfortable','device','crisp','best','work']
+words = ['comfortable','rating','crisp','best','work']
 
 plt.figure(figsize=(24, 24))
 for i,word in enumerate(words):

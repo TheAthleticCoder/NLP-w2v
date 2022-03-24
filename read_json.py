@@ -8,7 +8,7 @@ sentence_list = []
 #only open first 10 sentences in the file
 with open('Electronics_5.json', 'r') as f:
     for i, line in enumerate(f):
-        if i < 5000:
+        if i < 7000:
             #print type of line
             sentence_list.append(preprocess(json.loads(line)['reviewText']))
         else:
