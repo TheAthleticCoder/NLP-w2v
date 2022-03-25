@@ -14,9 +14,10 @@ This repository intends to familiarise you with the above techniques by implemen
 3. `svd.py` implements the co-occurence matrix and SVD. It generates `cooccurence_matrix.csv` and `U_reduced.csv` which are important components of the concept. 
 4. `model1.py` Implements the first model given in the document. It displays the most similar words for the word 'camera' and generates **t-SNE graphs** for 5 different grammatical words.
 5. `model2.py` Implements the second model given in the document. It displays the most similar words for the word 'camera' and generates **t-SNE graphs** for 5 different grammatical words.
-6. `pretrained_model.py` runs the code on a pretrained word2vec model. It is used to compare with the 2 created models above. 
-7. `own_w2v.model` contains loadable model from `model1.py`
-8. `word2vec.model` contains loadable model from `model2.py`
+6. `tensor_model.py` implements word2vec usinf the TensorFlow library. 
+7. `pretrained_model.py` runs the code on a pretrained word2vec model. It is used to compare with the 2 created models above. 
+8. `own_w2v.model` contains loadable model from `model1.py`
+9. `word2vec.model` contains loadable model from `model2.py`
 
 -----
 

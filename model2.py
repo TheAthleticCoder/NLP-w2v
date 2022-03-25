@@ -48,7 +48,7 @@ model = Word2Vec(words_in_sentence, min_count=5, sg=0, hs=0, negative=5, vector_
 word_vectors = model.wv
 
 #print words similar to the word 'camera'
-print(word_vectors.most_similar("camera"))
+print(word_vectors.most_similar("research"))
 
 model.save("own_w2v.model")
 
